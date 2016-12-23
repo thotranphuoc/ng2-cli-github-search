@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-12">
+        <form action="">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="search a github" [(ngModel)]="userName" name="userName" (keyup)="onSearch()">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="user">
+    <div class="card">
+        <div class="card-header">
+            {{user.login}}
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="github-avatar img-thumbnail" src="{{user.avatar_url}}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="stats">
+                        <span class="label label-primary">{{user.public_repos}} Public Repos</span>
+                        <span class="label label-success">{{user.public_gists}} Public Gists</span>
+                        <span class="label label-info">{{user.followers}} Followers</span>
+                        <span class="label label-warning">{{user.following}} Following</span>
+                    </div>
+                    <br>
+                    <div class="list-group">
+                        <li class="list-group-item"><strong>Username: </strong>{{user.login}}</li>
+                        <li class="list-group-item"><strong>Location: </strong>{{user.location}}</li>
+                        <li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
+                        <li class="list-group-item"><strong>Blog: </strong>{{user.blog}}</li>
+                        <li class="list-group-item"><strong>Member since: </strong>{{user.created_at}}</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            {{user.login}}'s Repositories
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngFor="let repo of repos">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h4><a href="{{repo.html_url}}" target="blank">{{repo.name}}</a></h4>
+                                <p>{{repo.description}}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="label label-primary">{{repo.watchers}} Watchers</span>
+                                <span class="label label-success">{{repo.forks}} Forks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
